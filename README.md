@@ -5,7 +5,7 @@
 ## Example
 ```
 filename = 'Settings.ini'
-ini = INI.new(filename)
+ini = INI.load_file(filename)
 ini['Settings']['Number']
 ini['Settings']['String']
 ini['Settings']['Bool']
