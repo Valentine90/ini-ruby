@@ -1,9 +1,9 @@
 #==============================================================================
 # ** INI
 #------------------------------------------------------------------------------
-#  Este script lida com arquivos INI.
+#  Este script lida com arquivos INI.
 #------------------------------------------------------------------------------
-#  Autor: Valentine
+#  Autor: Valentine
 #==============================================================================
 
 class INI
@@ -11,6 +11,10 @@ class INI
   def initialize(filename)
     @data = {}
     create_properties(filename)
+  end
+
+  def self.load_file(filename)
+    new(filename)
   end
   
   def create_properties(filename)
