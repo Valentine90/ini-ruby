@@ -6,7 +6,7 @@
 ```Ruby
 filename = 'Settings.ini'
 ini = INI.load_file(filename)
-ini['Settings']['Number']
-ini['Settings']['String']
-ini['Settings']['Bool']
+ini[:user][:name] #=> 'Jonny'
+ini[:user][:age] #=> 15
+ini[:user][:registered] #=> true
 ```
