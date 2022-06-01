@@ -24,12 +24,12 @@ class INI
     #de linha, e não nos espaços em branco
     file.split("\n").each do |line|
       if line.start_with?('[')
-        key = line[1...line.size - 1]
+        key = line[1...line.size - 1].downcase.to_sym
         @data[key] = {}
       # Se não for uma linha em branco ou comentário
       elsif !line.strip.empty? && !line.include?(';')
         name, value = line.split('=')
-        @data[key][name.rstrip] = parse(value.lstrip)
+        @data[key][name.rstrip.downcase.to_sym] = parse(value.lstrip)
       end
     end
   end
