@@ -17,6 +17,16 @@ class INI
     new(filename)
   end
   
+  def [](key)
+    @data[key]
+  end
+  
+  def each(&block)
+    @data.each { |key, property| yield(key, property) }
+  end
+  
+  private
+  
   def create_properties(filename)
     file = File.open(filename, 'r:bom|UTF-8', &:read)
     key = nil
@@ -32,14 +42,6 @@ class INI
         @data[key][name.rstrip.downcase.to_sym] = parse(value.lstrip)
       end
     end
-  end
-  
-  def [](key)
-    @data[key]
-  end
-  
-  def each(&block)
-    @data.each { |key, property| yield(key, property) }
   end
   
   def parse(value)
