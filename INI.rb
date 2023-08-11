@@ -31,12 +31,12 @@ class INI
     file = File.open(filename, 'r:bom|UTF-8', &:read)
     key = nil
     # Divide file em substrings com base apenas na quebra
-    #de linha, e não nos espaços em branco
+    # de linha, e não nos espaços em branco.
     file.split("\n").each do |line|
       if line.start_with?('[')
         key = line[1...line.size - 1].downcase.to_sym
         @data[key] = {}
-      # Se não for uma linha em branco ou comentário
+      # Se não for uma linha em branco ou comentário.
       elsif !line.strip.empty? && !line.include?(';')
         name, value = line.split('=')
         @data[key][name.rstrip.downcase.to_sym] = parse(value.lstrip)
@@ -53,7 +53,7 @@ class INI
       return value.downcase == 'true'
     else
       # O gsub, em vez de delete, remove aspas simples e duplas e evita
-      #que o caractere \ seja removido do restante do texto
+      # que o caractere \ seja removido do restante do texto.
       return value.gsub(/\"|'/, '')
     end
   end
