@@ -45,16 +45,13 @@ class INI
   end
 
   def parse(value)
-    if value =~ /^([\d_]+)$/
-      value.to_i
-    elsif value =~ /^([\d_]*\.\d+)$/
-      value.to_f
-    elsif value =~ /true|false/i
-      value.downcase == 'true'
-    else
-      # O gsub, em vez de delete, remove aspas simples e duplas e evita
-      # que o caractere \ seja removido do restante do texto.
-      value.gsub(/\"|'/, '')
+    case value
+    when /^([\d_]+)$/ then value.to_i
+    when /^([\d_]*\.\d+)$/ then value.to_f
+    when /true|false/i then value.downcase == 'true'
+    # O gsub, em vez de delete, remove aspas simples e duplas e evita
+    # que o caractere \ seja removido do restante do texto.
+    else; value.gsub(/\"|'/, '')
     end
   end
 end
